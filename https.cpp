@@ -128,52 +128,36 @@ int main(int argc, char *argv[])
 
     KeyBlock key_block = generate_key_block(cke.master, sizeof(cke.master), rand, ch_message.random);
     
-    debug("client write key = ", key_block.client_write_key, 16);
-    
     RC4_KEY decrypt_key;
     RC4_set_key(&decrypt_key, 16, key_block.client_write_key);
     RC4(&decrypt_key, 32, ehsm.encrypted_data, ehsm.data);
-
-    debug("encrypted data = ", ehsm.encrypted_data, 32);
-    debug("decrypted data = ", ehsm.data, 32);
 
     uchar verify[12];
     uchar mac[16];
     memcpy(verify, ehsm.data+4, 12);
     memcpy(mac, ehsm.data+16, 16);
 
-    debug("verify = ", verify, 12);
-    debug("mac = ", mac, 16);
+    
+    
 
-    uchar entire_message[21];
-    memcpy(entire_message, ehsm.data, 16);
+    uchar entire_message[29];
+    memcpy(entire_message+8+5, ehsm.data, 16);
 
-    uchar hs_layer[16];
-    memcpy(hs_layer, client_key_exchange_buffer+16+cke.msg_len, 16);
+    uchar record_header[] = {22, 3, 1, 0, 16};
+    memcpy(entire_message+8, record_header, 5);
 
-    uchar vfy[12];
-    memcpy(vfy, ehsm.data+4, 12);
-
+    uchar sequence_num[8]; memset(sequence_num, 0, 8);
+    
     uchar entire_message_md5[16]; uint em_len;
-    uchar hs_layer_md5[16]; uint hsl_len;
-    uchar verify_md5[16]; uint vm_len;
-
-    HMAC(EVP_md5(), key_block.client_write_MAC_secret, 16, entire_message, 21, entire_message_md5, &em_len);
-    HMAC(EVP_md5(), key_block.client_write_MAC_secret, 16, hs_layer, 16, hs_layer_md5, &em_len);
-    HMAC(EVP_md5(), key_block.client_write_MAC_secret, 16, vfy, 12, verify_md5, &em_len);
-
-    debug("md5 on entire message = ", entire_message_md5, 16);
-    debug("md5 on handshake layer = " , hs_layer_md5,16);
-    debug("md5 on just the verify data = ", verify_md5, 16);
-
-    cout << "now just plain md5" << endl;
-    MD5(entire_message, 21, entire_message_md5);
-    MD5(hs_layer, 16, hs_layer_md5);
-    MD5(vfy, 12, verify_md5);    
-
-    debug("md5 on entire message = ", entire_message_md5, 16);
-    debug("md5 on handshake layer = " , hs_layer_md5,16);
-    debug("md5 on just the verify data = ", verify_md5, 16);
+      
+    memcpy(entire_message, sequence_num, 8);
+    HMAC(EVP_md5(), key_block.client_write_MAC_secret, 16, entire_message, 29, entire_message_md5, &em_len);
+     
+     
+    
+    
+    
+    
 
     //double check the MAC
     /*uint mac_check_size = sh_size + cert_message_size + server_done_size;
@@ -234,8 +218,8 @@ int main(int argc, char *argv[])
     offset += cke.msg_len;
     memcpy(total_hash+offset, EHSM, 32);
 
-    debug("CKE = ", CKE, cke.msg_len);
-    debug("EHSM = ", EHSM, 32);
+    
+    
 
     uchar md5[16];
     uchar sha1[20];
@@ -248,12 +232,13 @@ int main(int argc, char *argv[])
     uchar client_finished[] = "client finished";
     SSL_PRF(cke.master, sizeof(cke.master), client_finished, sizeof(client_finished)-1, ms, 36, 1, prfout, 20);
     
-    debug("VERIFY = ", prfout, 12);
+    
 
     int sccs_size = write_change_cipher_spec_packet(encrypt_key, key_block.server_write_MAC_secret, sizeof(key_block.server_write_MAC_secret), cke.master, sizeof(cke.master), total_hash, total_hash_len);
     uchar sccs[sccs_size];
     
     grab_server_packet(sccs, sccs_size);
+    debug("plaintext sent out = ", sccs, sccs_size);
     n = write(newsockfd, sccs, sccs_size);
     
 

@@ -585,7 +585,7 @@ KeyBlock generate_key_block(uchar *master_key, uint master_key_size, Random serv
   SSL_PRF(master_key, master_key_size, label, 13, seed, sizeof(seed), 5, ret.key_block, sizeof(ret.key_block));
 
   //got the key block, now just divide it up properly
-  debug("key block = ", ret.key_block, 64);
+  
   int offset = 0;
   memcpy(ret.client_write_MAC_secret, ret.key_block, 16);
   offset += 16;
@@ -633,9 +633,10 @@ uint write_change_cipher_spec_packet(RC4_KEY &rc4_key, uchar *mac_secret, uint m
   ret += fwrite(version, 2, 1, temp)*2;
   ret += fwrite(len2, 2, 1, temp)*2;
   
-  uchar msg_header[4] = {20, 0, 0, 12};
+  uchar msg_header[9] = {22,3,1,0,16,20, 0, 0, 12};
 
   uchar label[] = "server finished";
+  debug("master secret = ", master_secret, master_size);
 
   //void SSL_PRF(uchar *key, uint key_size, uchar *label, uint label_size, uchar *seed, uint seed_size, int rounds, uchar *output, uint output_size)
 
@@ -654,7 +655,7 @@ uint write_change_cipher_spec_packet(RC4_KEY &rc4_key, uchar *mac_secret, uint m
   SSL_PRF(master_secret, master_size, label, sizeof(label)-1, ultimate_hash, 36, 1, prf_output, 20);
   
   uchar enc_data[32];
-  uchar plain_data[32];
+  uchar plain_data[37];
 
   uchar mac[16];
   uint mac_len;
@@ -663,21 +664,18 @@ uint write_change_cipher_spec_packet(RC4_KEY &rc4_key, uchar *mac_secret, uint m
 
   //RC4(&mac_secret_key, 14, prf_output, enc_prf_output);
   
-  memcpy(plain_data, msg_header, 4);
-  memcpy(plain_data+4, prf_output, 12);
-  
-  
+  memcpy(plain_data, msg_header, 9);
+  memcpy(plain_data+9, prf_output, 12);
   
 
-  HMAC(EVP_md5(), mac_secret, mac_secret_len, plain_data, sizeof(plain_data), mac, &mac_len);
+  HMAC(EVP_md5(), mac_secret, mac_secret_len, plain_data, sizeof(plain_data)-16, mac, &mac_len);  
 
+  memcpy(plain_data+21, mac, 16);
   
+  RC4(&rc4_key, 32, plain_data+5, enc_data);
 
-  memcpy(plain_data+20, mac, 16);
-  
-  RC4(&rc4_key, 32, plain_data, enc_data);
-
-  
+  debug("mac_secret = ", mac_secret, 16);
+  debug("mac = ", mac, 16);
 
   ret += fwrite(enc_data, 32, 1, temp)*32;
 
