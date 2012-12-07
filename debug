@@ -1,0 +1,181 @@
+
+key block = 
+13 9a 5e a0 26 76 aa e0 4f b6 a9 32 35 2e 4f dd 63 b5 20 c6 4 3a 1 50 e1 31 d1 ea 95 84 f6 be 34 34 b7 e4 dd dd 37 3e d9 ea 55 37 df 11 50 c4 4c ba 7b 8b dc 96 d3 14 77 4f ae 6 f9 4 37 4c 
+
+
+client write key = 
+34 34 b7 e4 dd dd 37 3e d9 ea 55 37 df 11 50 c4 
+
+
+encrypted data = 
+eb b9 39 69 60 f8 cf a7 c0 61 c3 6f 70 f2 53 48 97 fc 81 75 11 53 9e 83 22 38 8f a2 2b 86 99 54 
+
+
+decrypted data = 
+14 0 0 c d 58 28 3c a9 f9 9b b2 4f be 1a 58 5b 14 12 74 c6 6e 21 c0 ea 49 e 8 34 8d ad ef 
+
+
+verify = 
+d 58 28 3c a9 f9 9b b2 4f be 1a 58 
+
+
+mac = 
+5b 14 12 74 c6 6e 21 c0 ea 49 e 8 34 8d ad ef 
+
+
+md5 on entire message = 
+83 40 76 43 c 10 40 3f 58 30 51 a5 32 f7 48 cb 
+
+
+md5 on handshake layer = 
+42 d b6 5 5a f8 6 0 bd 63 26 78 13 29 de 86 
+
+
+md5 on just the verify data = 
+46 fc 11 cd 54 5e 95 c3 7e f9 d0 6a 58 a0 2c 42 
+
+now just plain md5
+
+md5 on entire message = 
+29 61 1e 21 c3 fe 51 6e 35 24 f1 19 7c 50 67 fd 
+
+
+md5 on handshake layer = 
+a0 d0 c9 57 10 e6 56 80 5a 41 26 a9 dc e6 5f c 
+
+
+md5 on just the verify data = 
+a1 8e a8 ec 1e 7e c0 f5 f 17 fe 9f 78 bd 81 f 
+
+
+CKE = 
+10 0 0 42 0 40 9a d4 87 c0 46 ff 5c 49 8d 6a 96 8c a5 ac 54 24 ff 60 e3 f9 3a b7 92 7d 60 11 84 b1 28 3 8c 80 7d 10 3c 26 bf 9a bc aa 5 2c 93 fc fe c1 4e 16 6 c5 2c 18 41 7f b3 bc b8 9c a1 e3 75 d5 95 cb 
+
+
+EHSM = 
+eb b9 39 69 60 f8 cf a7 c0 61 c3 6f 70 f2 53 48 97 fc 81 75 11 53 9e 83 22 38 8f a2 2b 86 99 54 
+
+
+VERIFY = 
+a3 d6 a3 b1 e0 7b 25 3d f3 63 83 ed 
+
+
+key block = 
+60 db d4 33 65 a4 2 e eb 22 a9 d 7c 85 8 c0 98 aa b1 b0 4 51 29 a2 41 46 bd a8 9b 65 1c a6 c3 4d 87 8 36 1e e0 6 8a e3 83 f0 b8 ae 3 af 33 f8 63 38 c4 1 a1 2d 6d 4f d1 26 5c 79 17 62 
+
+
+client write key = 
+c3 4d 87 8 36 1e e0 6 8a e3 83 f0 b8 ae 3 af 
+
+
+encrypted data = 
+e 1f a6 a4 5e 3b 87 51 9c e5 cf 36 56 7a 11 b6 15 1c d3 14 fc ef de e3 27 ce 8b 42 d8 83 1a ce 
+
+
+decrypted data = 
+14 0 0 c 19 c 11 21 4a a3 f1 37 d9 ab b1 2a 8f ee e1 36 3c f5 1a 0 23 1a 6b 34 42 60 e5 36 
+
+
+verify = 
+19 c 11 21 4a a3 f1 37 d9 ab b1 2a 
+
+
+mac = 
+8f ee e1 36 3c f5 1a 0 23 1a 6b 34 42 60 e5 36 
+
+
+md5 on entire message = 
+6a 94 0 d8 a4 a5 b7 2 cd 1b b2 22 a5 c5 e8 80 
+
+
+md5 on handshake layer = 
+a6 7 c6 f1 d2 b1 2 74 e5 3 92 ac 2 97 39 56 
+
+
+md5 on just the verify data = 
+c0 60 8e 30 a5 64 f4 d3 63 1a 3c 2d 92 e0 36 ee 
+
+now just plain md5
+
+md5 on entire message = 
+4d 8f 6c 7a ab a6 b 7a 15 13 29 75 1f 66 ae fd 
+
+
+md5 on handshake layer = 
+18 33 b0 61 f4 d7 b8 a4 30 7b 2e 18 19 b9 f9 90 
+
+
+md5 on just the verify data = 
+d2 f9 47 27 e 86 e1 71 e4 b8 66 bd 58 8d 49 80 
+
+
+CKE = 
+10 0 0 42 0 40 a4 45 1a 7a 55 f9 9f ab a5 ae 9d 9c 64 27 af de b1 9d 7a 5a b0 bb d ff 9b e6 98 a2 e0 14 74 c0 c7 61 97 2d ad 6 ea 3e 4 2f dd 50 a1 20 7e c3 e 8e 28 6 4d 54 ba 72 7f 18 7d e7 23 9e 2c 6b 
+
+
+EHSM = 
+e 1f a6 a4 5e 3b 87 51 9c e5 cf 36 56 7a 11 b6 15 1c d3 14 fc ef de e3 27 ce 8b 42 d8 83 1a ce 
+
+
+VERIFY = 
+54 c6 1f a8 4d c4 b4 9 29 48 72 f2 
+
+
+key block = 
+b2 24 f1 c6 53 53 58 ea b6 dd e2 f9 1f 1 ed de ca 75 90 21 4a fd 56 79 81 8 88 91 94 e1 33 b8 3e 7a e0 d9 bf e0 76 ce 7b 9a 7b d2 c7 a5 83 ab ba 4a 69 c9 87 c9 11 c1 42 ff 67 d4 80 6d c4 8a 
+
+
+client write key = 
+3e 7a e0 d9 bf e0 76 ce 7b 9a 7b d2 c7 a5 83 ab 
+
+
+encrypted data = 
+26 4b 94 59 c3 d8 cf 7b 7c c2 48 58 ed 0 db 2d a7 40 95 33 b5 a1 2a 5b df 6d 94 b7 1a 11 fb fb 
+
+
+decrypted data = 
+14 0 0 c 22 fe 3b b7 f 25 cb 5d 62 75 87 9b 4c 4e 85 f2 f5 b0 d 97 38 37 25 3d 37 fc fe a8 
+
+
+verify = 
+22 fe 3b b7 f 25 cb 5d 62 75 87 9b 
+
+
+mac = 
+4c 4e 85 f2 f5 b0 d 97 38 37 25 3d 37 fc fe a8 
+
+
+md5 on entire message = 
+3d ae 62 e1 5c f 61 68 34 9c 52 69 16 77 ac e6 
+
+
+md5 on handshake layer = 
+34 c0 f1 33 f0 20 6d 29 76 81 10 ed a7 cf c9 b1 
+
+
+md5 on just the verify data = 
+13 20 9e 2c 60 9c 73 6f 23 dd cc 6a e3 3f 78 c0 
+
+now just plain md5
+
+md5 on entire message = 
+a1 91 cf d4 95 a1 7 d0 14 13 68 8 9a 79 da 9c 
+
+
+md5 on handshake layer = 
+f3 a9 8a 7a af 7 5d 12 76 9a 41 74 5 cc 8c 92 
+
+
+md5 on just the verify data = 
+e3 aa 20 79 6b 97 b0 56 89 a2 3d 1d 81 43 88 a8 
+
+
+CKE = 
+10 0 0 42 0 40 cc a7 b0 82 13 71 5f a7 96 f 5e df c1 93 13 41 7b 2d 4c 33 43 2a 74 43 98 6 b3 84 83 2d fa f5 58 19 e5 28 c7 b6 62 f7 f9 9d 22 c b8 b0 7 cf 89 81 ca 62 80 50 67 c5 64 42 f2 d1 98 38 4e 26 
+
+
+EHSM = 
+26 4b 94 59 c3 d8 cf 7b 7c c2 48 58 ed 0 db 2d a7 40 95 33 b5 a1 2a 5b df 6d 94 b7 1a 11 fb fb 
+
+
+VERIFY = 
